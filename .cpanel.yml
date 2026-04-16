@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/codemakc/public_html/
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp -R manuales $DEPLOYPATH
+    - /bin/cp -R empleos $DEPLOYPATH
+    - /bin/cp documentos.html $DEPLOYPATH
+    - /bin/cp download.png $DEPLOYPATH
+    - /bin/cp googlef1f2feb7b7791291.html $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp legales.html $DEPLOYPATH
+    - /bin/cp script.js $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp styles.css $DEPLOYPATH
+    - /bin/cp vacantes.html $DEPLOYPATH
