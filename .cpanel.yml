@@ -14,3 +14,4 @@ deployment:
     - /bin/cp sitemap.xml $DEPLOYPATH
     - /bin/cp styles.css $DEPLOYPATH
     - /bin/cp vacantes.html $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
