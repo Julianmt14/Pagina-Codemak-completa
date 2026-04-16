@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Documentos | CODEMAK S.A.S.</title>
+    <link rel="icon" href="https://codemak.co/img/favicon_v2.png?v=3" type="image/png" sizes="192x192">
+
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        'primary-light': '#66BB6A',
+                        'primary-dark': '#2E7D32',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'system-ui', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fuentes de Google (mismas del sitio principal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .animate-fade-up {
+            animation: fade-up 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .doc-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A, #2E7D32);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .doc-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .doc-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            border-color: #4CAF50;
+        }
+
+        .bg-dots {
+            background-image: radial-gradient(circle at 1px 1px, rgba(76, 175, 80, 0.12) 1px, transparent 0);
+            background-size: 35px 35px;
+        }
+
+        .secure-badge {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #bbf7d0;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #2E7D32, #4CAF50, #66BB6A, #4CAF50, #2E7D32);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 font-sans min-h-screen">
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <div id="main-content">
+
+        <!-- Decoración de fondo -->
+        <div class="fixed inset-0 bg-dots opacity-30 pointer-events-none"></div>
+        <div
+            class="fixed top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3">
+        </div>
+        <div
+            class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-primary-light/5 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/4">
+        </div>
+
+        <!-- ========== NAVBAR ========== -->
+        <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <img src="img/logo.png" alt="CODEMAK Logo"
+                            class="h-10 transition-transform duration-300 group-hover:scale-110">
+                    </a>
+                    <div class="hidden sm:flex items-center gap-2 secure-badge px-4 py-2 rounded-full">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <span class="text-xs font-semibold text-primary-dark">Acceso Verificado</span>
+                    </div>
+                    <a href="index.html"
+                        class="inline-flex items-center gap-2 text-gray-500 hover:text-primary font-medium text-sm transition-colors duration-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al sitio
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ========== HERO ========== -->
+        <section class="relative pt-16 pb-12 sm:pt-24 sm:pb-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl animate-fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 animate-fade-up delay-100">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        Solo personal autorizado
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 animate-fade-up delay-200"
+                        style="font-family: 'Poppins', sans-serif; letter-spacing: -0.5px;">
+                        Manuales y<br>
+                        <span class="shimmer-text">Documentación</span>
+                    </h1>
+                    <p class="text-gray-500 text-lg sm:text-xl mb-4 max-w-xl animate-fade-up delay-300">
+                        Repositorio privado de recursos técnicos, manuales operativos y protocolos internos de CODEMAK
+                        Ingeniería Civil.
+                    </p>
+                    <div
+                        class="w-20 h-1 bg-gradient-to-r from-primary to-primary-light rounded-full animate-fade-up delay-400">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== DOCUMENTOS ========== -->
+        <section class="pb-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center gap-3 mb-10 animate-fade-up delay-400">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <span class="text-sm text-gray-400 font-medium">1 documento disponible</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- TARJETA 1 -->
+                    <button
+                        onclick="openPreview('manuales/CDK-DOC-004.pdf', 'Política de No Alcoholismo, No Drogas, No Fumadores')"
+                        class="doc-card group block text-left animate-fade-up delay-500 w-full cursor-pointer">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary-light/10 flex items-center justify-center text-primary group-hover:from-primary/20 group-hover:to-primary-light/20 transition-all duration-300 border border-primary/10">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <span
+                                class="inline-flex items-center gap-1.5 bg-primary/10 text-primary text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                                <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                PDF
+                            </span>
+                        </div>
+                        <h3
+                            class="text-xl font-bold mb-2 text-gray-900 group-hover:text-primary transition-colors duration-300">
+                            Política de No Alcoholismo, No Drogas, No Fumadores</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+                            Documento CDK-DOC-004 — Lineamientos y políticas internas sobre consumo de sustancias.
+                        </p>
+                        <div
+                            class="pt-5 border-t border-gray-100 flex justify-between items-center group-hover:border-primary/20 transition-colors duration-300">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <span class="text-xs text-gray-400">Ver vista previa</span>
+                            </div>
+                            <div
+                                class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+
+
+
+                    <!-- TARJETA VACÍA -->
+                    <div class="doc-card flex flex-col items-center justify-center text-center opacity-40 hover:opacity-70 cursor-default border-dashed border-2 border-gray-200 bg-gray-50/50 animate-fade-up delay-700"
+                        style="min-height: 300px;">
+                        <div
+                            class="w-14 h-14 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center mb-5 text-gray-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-400 mb-1">Espacio disponible</h3>
+                        <p class="text-xs text-gray-300">Próximamente más documentos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FOOTER ========== -->
+        <footer class="py-10 border-t border-gray-100 bg-gray-50/50">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="img/logo.png" alt="CODEMAK" class="h-6 opacity-40">
+                    <p class="text-xs text-gray-400">&copy; <span id="year"></span> CODEMAK S.A.S. &bull; Portal Privado
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-[11px] text-gray-400 font-medium">Acceso restringido</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========== MODAL VISTA PREVIA PDF ========== -->
+    <div id="pdf-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Fondo oscuro -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closePreview()"></div>
+        <!-- Contenido del modal -->
+        <div class="relative z-10 flex flex-col h-full p-4 sm:p-6 lg:p-10">
+            <!-- Barra superior -->
+            <div class="flex items-center justify-between mb-4 flex-shrink-0">
+                <h3 id="pdf-modal-title" class="text-white font-bold text-lg truncate mr-4"></h3>
+                <div class="flex items-center gap-3 flex-shrink-0">
+                    <a id="pdf-download-btn" href="" target="_blank"
+                        class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Descargar
+                    </a>
+                    <button onclick="closePreview()"
+                        class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Iframe del PDF -->
+            <div class="flex-grow bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <iframe id="pdf-iframe" src="" class="w-full h-full border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function openPreview(pdfUrl, title) {
+            const encodedUrl = encodeURI(pdfUrl);
+            document.getElementById('pdf-iframe').src = encodedUrl;
+            document.getElementById('pdf-modal-title').textContent = title;
+            document.getElementById('pdf-download-btn').href = encodedUrl;
+            document.getElementById('pdf-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePreview() {
+            document.getElementById('pdf-modal').classList.add('hidden');
+            document.getElementById('pdf-iframe').src = '';
+            document.body.style.overflow = '';
+        }
+
+        // Cerrar con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePreview();
+        });
+    </script>
+</body>
+
+</html>

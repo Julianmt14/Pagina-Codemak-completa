@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Únete al equipo de Codemak Ingeniería Civil. Explora las vacantes y oportunidades de empleo disponibles. Construye el futuro de Colombia con nosotros.">
+    <meta name="keywords"
+        content="Empleos Codemak, vacantes ingeniería civil, trabajo construcción, ofertas de empleo, Codemak SAS, trabajar en Codemak">
+    <title>Empleos y Vacantes | Codemak Ingeniería Civil</title>
+    <link rel="icon" href="https://codemak.co/img/favicon_v2.png?v=3" type="image/png" sizes="192x192">
+    <link rel="shortcut icon" href="https://codemak.co/img/favicon_v2.png?v=3" type="image/png">
+    <link rel="apple-touch-icon" href="https://codemak.co/img/favicon_v2.png?v=3" sizes="180x180">
+    <link rel="canonical" href="https://codemak.co/vacantes.html">
+
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        'primary-light': '#66BB6A',
+                        'primary-dark': '#2E7D32',
+                        accent: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'system-ui', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos Personalizados Base -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Estilos Únicos para la página de Vacantes (Frontend-Design Skill) */
+        .grid-breaker {
+            grid-column: 1 / -1;
+            position: relative;
+            z-index: 10;
+        }
+
+        .job-card {
+            background: #ffffff;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--tw-color-primary, #4CAF50);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease;
+        }
+
+        .job-card:hover {
+            border-color: #e2e8f0;
+            box-shadow: 12px 12px 0px rgba(76, 175, 80, 0.15);
+            transform: translate(-4px, -4px);
+        }
+
+        .job-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .stagger-1 { animation: slideUpFade 0.6s ease forwards 0.2s; opacity: 0; transform: translateY(20px); }
+        .stagger-2 { animation: slideUpFade 0.6s ease forwards 0.3s; opacity: 0; transform: translateY(20px); }
+        .stagger-3 { animation: slideUpFade 0.6s ease forwards 0.4s; opacity: 0; transform: translateY(20px); }
+        
+        @keyframes slideUpFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Datos Estructurados JSON-LD SEO Local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Empleos y Vacantes | Codemak Ingeniería Civil",
+      "description": "Oportunidades de empleo y desarrollo profesional en Codemak S.A.S."
+    }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans selection:bg-primary selection:bg-opacity-20 selection:text-accent flex flex-col min-h-screen">
+
+    <!-- ========== BARRA DE NAVEGACIÓN (Simplificada) ========== -->
+    <nav class="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group" aria-label="Ir a la página principal de Codemak">
+                    <img src="img/logo.png" alt="CODEMAK Logo" class="h-10 transition-transform duration-300 group-hover:scale-105">
+                </a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-link !text-gray-500 hover:!text-gray-900">← Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- ========== LISTA DE VACANTES ========== -->
+    <main id="posiciones" class="flex-grow py-24 bg-white" tabindex="-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b-2 border-gray-100 pb-6">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-black font-display text-accent mb-2">Posiciones <span class="text-primary font-serif italic font-normal">Abiertas</span></h2>
+                    <p class="text-gray-500 font-medium tracking-wide text-lg">Encuentra tu lugar en Codemak.</p>
+                </div>
+                <!-- Contador de vacantes visual -->
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-4xl font-black text-accent leading-none">2</span>
+                    <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Disponibles</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative z-10">
+                
+
+
+                <!-- Vacante 3 (Nueva: Inspector de Obra Civil) -->
+                <!-- Vacante 3 (Nueva: Inspector de Obra Civil) -->
+                <article class="job-card min-h-0 grid-breaker p-10 sm:p-14 rounded-xl group relative overflow-hidden flex flex-col justify-between">
+                    <div class="w-64 h-64 absolute -right-20 -top-20 bg-gray-50 rounded-full transition-transform group-hover:scale-150 duration-700 -z-10"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="inline-block bg-primary/10 text-primary-dark font-bold px-4 py-1.5 text-sm uppercase tracking-widest rounded-sm border border-primary/20">Ingeniería</span>
+                            <span class="flex items-center text-gray-500 font-medium">📍 Vaupés, Com. Indígenas</span>
+                        </div>
+                        <h3 class="text-3xl md:text-5xl font-black font-display text-accent mb-6 group-hover:text-primary transition-colors">Inspector de Obra Civil</h3>
+                        
+                        <div class="space-y-6 text-gray-600 mb-10 font-medium leading-relaxed max-w-4xl">
+                            <p class="text-lg md:text-xl text-gray-800">Se requiere Ingeniero Civil o Arquitecto con mínimo 1 año de experiencia para desempeñarse en proyecto ubicado en el departamento de Vaupés...</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-gray-100 pt-8 mt-auto gap-4">
+                        <span class="text-sm md:text-base font-bold text-gray-400 uppercase tracking-wider">Presencial / Por Proyecto</span>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <a href="empleos/inspector-obra-civil.html" aria-label="Ver Detalles" class="inline-flex items-center justify-center gap-4 bg-accent hover:bg-primary text-white px-8 py-5 font-bold text-lg md:text-xl transition-colors rounded-xl shadow-lg">
+                                Ver Detalles y Aplicar <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Vacante 4 (Nueva: Psicólogo) -->
+                <article class="job-card min-h-0 grid-breaker p-10 sm:p-14 rounded-xl group relative overflow-hidden flex flex-col justify-between mt-6">
+                    <div class="w-64 h-64 absolute -left-20 -bottom-20 bg-gray-50 rounded-full transition-transform group-hover:scale-150 duration-700 -z-10"></div>
+                    <div>
+                        <div class="flex justify-between items-start mb-8">
+                            <span class="inline-block bg-primary/10 text-primary-dark font-bold px-4 py-1.5 text-sm uppercase tracking-widest rounded-sm border border-primary/20">Social</span>
+                            <span class="flex items-center text-gray-500 font-medium">📍 Taraira, Vaupés</span>
+                        </div>
+                        <h3 class="text-3xl md:text-5xl font-black font-display text-accent mb-6 group-hover:text-primary transition-colors">Psicólogo/a</h3>
+                        
+                        <div class="space-y-6 text-gray-600 mb-10 font-medium leading-relaxed max-w-4xl">
+                            <p class="text-lg md:text-xl text-gray-800">Se requiere Psicólogo. Habilidades ágiles, proactivas y organizadas, con enfoque en diagnóstico sociocultural para un proyecto en el departamento de...</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-gray-100 pt-8 mt-auto gap-4">
+                        <span class="text-sm md:text-base font-bold text-gray-400 uppercase tracking-wider">Presencial / Por Proyecto</span>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <a href="empleos/psicologo-vaupes.html" aria-label="Ver Detalles" class="inline-flex items-center justify-center gap-4 bg-accent hover:bg-primary text-white px-8 py-5 font-bold text-lg md:text-xl transition-colors rounded-xl shadow-lg">
+                                Ver Detalles y Aplicar <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Candidaturas Espontáneas -->
+                <article class="job-card grid-breaker p-8 lg:p-12 rounded-xl group bg-accent !border-accent hover:!border-primary relative overflow-hidden mt-6 shadow-[0_20px_50px_rgba(30,41,59,0.15)] text-white">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent to-gray-800 opacity-90 z-0"></div>
+                    <!-- Patrón sutil para la tarjeta grid breaker -->
+                    <div class="absolute inset-0 z-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+                    
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 justify-between items-center">
+                        <div class="max-w-2xl">
+                            <span class="inline-block text-primary font-bold mb-4 uppercase tracking-widest text-sm">Candidaturas Espontáneas</span>
+                            <h3 class="text-3xl md:text-4xl font-black font-display mb-4 tracking-tight leading-tight">¿No encuentras tu perfil ideal?</h3>
+                            <p class="text-gray-300 font-medium text-lg leading-relaxed">Siempre estamos en busca de arquitectos, dibujantes, calculistas estructurales y personal administrativo brillante. Envíanos tu hoja de vida y portafolio.</p>
+                        </div>
+                        <div class="flex-shrink-0 w-full md:w-auto">
+                            <button onclick="navigator.clipboard.writeText('coordinadorarhcodemak@gmail.com'); const el = this.querySelector('span.copy-text'); const old = el.innerText; el.innerText = '¡Correo Copiado!'; setTimeout(() => el.innerText = old, 2000);" class="group/btn relative inline-flex items-center justify-center w-full md:w-auto px-10 py-5 font-bold text-lg md:text-xl text-accent bg-white overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-primary rounded-full group-hover/btn:w-[600px] group-hover/btn:h-56"></span>
+                                <span class="relative group-hover/btn:text-white transition-colors flex items-center gap-3"><span class="copy-text">coordinadorarhcodemak@gmail.com</span> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER (Simplificado) ========== -->
+    <footer class="bg-white border-t border-gray-100 py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <img src="img/logo.png" alt="CODEMAK Logo" class="h-8 grayscale opacity-70">
+            </div>
+            <p class="text-gray-500 text-sm font-medium">
+                &copy; 2024 Codemak Ingeniería Civil S.A.S. - Colombia
+            </p>
+            <div class="flex gap-4">
+                <a href="index.html" class="text-sm font-bold text-gray-400 hover:text-primary transition-colors">Inicio</a>
+                <a href="legales.html" class="text-sm font-bold text-gray-400 hover:text-primary transition-colors">Legales</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
