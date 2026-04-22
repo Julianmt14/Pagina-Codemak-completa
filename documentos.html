@@ -352,6 +352,17 @@
 
         function openPreview(pdfUrl, title) {
             const encodedUrl = encodeURI(pdfUrl);
+            
+            // Detectar si es un dispositivo móvil
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // En móviles, abrir directamente en pestaña nueva para mejor experiencia
+                window.open(encodedUrl, '_blank');
+                return;
+            }
+
+            // En escritorio, mantener el modal
             document.getElementById('pdf-iframe').src = encodedUrl;
             document.getElementById('pdf-modal-title').textContent = title;
             document.getElementById('pdf-download-btn').href = encodedUrl;
