@@ -135,8 +135,8 @@
                 </div>
                 <!-- Contador de vacantes visual -->
                 <div class="hidden md:flex flex-col text-right">
-                    <span class="text-4xl font-black text-accent leading-none">0</span>
-                    <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Disponibles</span>
+                    <span class="text-4xl font-black text-accent leading-none">1</span>
+                    <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Disponible</span>
                 </div>
             </div>
 
@@ -144,14 +144,29 @@
                 
 
 
-                <!-- Mensaje de sin vacantes -->
-                <div class="grid-breaker p-8 sm:p-12 rounded-xl border-2 border-dashed border-gray-200 text-center bg-gray-50 flex flex-col items-center justify-center min-h-[300px]">
-                    <div class="w-16 h-16 bg-primary/10 text-primary-dark rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <!-- Vacante: Inspector SST -->
+                <article class="job-card p-8 sm:p-10 rounded-xl group text-left flex flex-col justify-between h-full stagger-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="inline-block bg-primary/10 text-primary-dark font-bold px-3 py-1 text-xs uppercase tracking-widest rounded-sm border border-primary/20">Seguridad Industrial</span>
+                            <span class="flex items-center text-gray-500 font-medium text-sm">📍 Raspaduras, Chocó</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black font-display text-accent mb-4">Inspector SST</h3>
+                        <p class="text-gray-600 font-medium mb-6 line-clamp-3">Se requiere Técnico o Tecnólogo en Seguridad y Salud en el Trabajo o áreas afines para proyecto en Raspaduras, Chocó. Contrato a término fijo por 3 meses con viáticos, traslado, alimentación y hospedaje cubiertos.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-xs font-bold uppercase">Técnico/Tecnólogo</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-xs font-bold uppercase">3 Meses</span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl sm:text-3xl font-black font-display text-accent mb-3">¡Equipos Completos!</h3>
-                    <p class="text-gray-500 font-medium text-base sm:text-lg max-w-2xl mx-auto">Actualmente hemos cubierto todas nuestras vacantes disponibles. Sin embargo, estamos en constante crecimiento. ¡Vuelve pronto para nuevas oportunidades o envíanos tu candidatura espontánea!</p>
-                </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between">
+                        <a href="empleos/inspector-sst.html" class="inline-flex items-center gap-2 text-primary font-bold hover:text-primary-dark transition-colors uppercase tracking-widest text-sm">
+                            Ver Detalles 
+                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <span class="text-xs text-gray-400 font-bold">Publicado: Hoy</span>
+                    </div>
+                </article>
 
                 <!-- Candidaturas Espontáneas -->
                 <article class="job-card grid-breaker p-6 sm:p-12 rounded-xl group bg-accent !border-accent hover:!border-primary relative overflow-hidden mt-6 shadow-[0_20px_50px_rgba(30,41,59,0.15)] text-white">
