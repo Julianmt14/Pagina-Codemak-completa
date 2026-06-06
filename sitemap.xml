@@ -16,7 +16,7 @@
     </url>
     <url>
         <loc>https://codemak.co/vacantes.html</loc>
-        <lastmod>2026-04-16</lastmod>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -24,6 +24,13 @@
     <url>
         <loc>https://codemak.co/empleos/inspector-sst-yacopi.html</loc>
         <lastmod>2026-05-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://codemak.co/empleos/auxiliar-contable.html</loc>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
