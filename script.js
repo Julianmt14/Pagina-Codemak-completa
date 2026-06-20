@@ -64,8 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== DESPLAZAMIENTO SUAVE =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
+            // Si el href ya no es un ancla local (ej. cambió a mailto:), no interferir
+            if (!targetId || !targetId.startsWith('#') || targetId === '#') return;
+            e.preventDefault();
             const target = document.querySelector(targetId);
 
             if (target) {
