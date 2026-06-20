@@ -366,9 +366,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Envío del Formulario PQR
+    // Envío del Formulario PQR via Formspree (envío automático a RRHH)
     if (formPqrBody) {
-        formPqrBody.addEventListener('submit', (e) => {
+        formPqrBody.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             // Generar radicado
@@ -390,109 +390,62 @@ document.addEventListener('DOMContentLoaded', () => {
             const confidencial = document.querySelector('input[name="pqr-confidencial"]:checked').value;
             const respuesta = document.querySelector('input[name="pqr-respuesta"]:checked').value;
 
-            // Mostrar radicado en el modal
-            if (pqrRadicadoNumero) {
-                pqrRadicadoNumero.textContent = radicado;
+            // Bloquear botón de enviar mientras se procesa
+            const submitBtn = formPqrBody.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
             }
 
-            // Crear el cuerpo del correo en texto plano pre-formateado
-            const emailBody = `RADICACIÓN FORMAL DE PQR - CODEMAK S.A.S.
---------------------------------------------------
-Radicado No: ${radicado}
-Fecha de Envío: ${dd}/${mm}/${yyyy}
-
-1. DATOS DEL SOLICITANTE:
-- Nombre: ${nombre}
-- Documento de identidad: ${documento}
-- Cargo o vínculo con la empresa: ${vinculo}
-- Teléfono de contacto: ${telefono}
-- Correo electrónico: ${correo}
-
-2. DETALLES DE LA SOLICITUD:
-- Tipo de solicitud: ${tipo}
-- Descripción de los hechos:
-${descripcion}
-
-3. CONFIDENCIALIDAD Y RESPUESTA:
-- Mantener identidad confidencial ante terceros: ${confidencial}
-- Medio de respuesta formal deseado: ${respuesta}
-
---------------------------------------------------
-Esta solicitud fue radicada de manera conforme por el sitio web oficial de CODEMAK.
-El solicitante ha autorizadode manera expresa el tratamiento de sus datos personales bajo la Ley 1581 de 2012 (Habeas Data).`;
-
-            // Configurar el enlace para abrir Gmail directamente en el navegador
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&to=coordinadorarhcodemak%40gmail.com&su=${encodeURIComponent(`Radicación de PQR - ${radicado} [${nombre}]`)}&body=${encodeURIComponent(emailBody)}`;
-            if (btnPqrMailto) {
-                btnPqrMailto.setAttribute('href', gmailUrl);
-                btnPqrMailto.setAttribute('target', '_blank');
-            }
-
-            // Guardar en localStorage para respaldo/auditoría del usuario
-            const pqrsGuardadas = JSON.parse(localStorage.getItem('codemak_pqrs') || '[]');
-            pqrsGuardadas.push({
+            // Datos a enviar a Formspree
+            const formData = {
+                _subject: `PQR Radicada - ${radicado} [${nombre}]`,
+                _replyto: correo,
                 radicado,
                 fecha: `${dd}/${mm}/${yyyy}`,
                 nombre,
                 documento,
-                vinculo,
+                vinculo_empresa: vinculo,
                 telefono,
-                correo,
-                tipo,
-                descripcion,
+                correo_solicitante: correo,
+                tipo_solicitud: tipo,
+                descripcion_hechos: descripcion,
                 confidencial,
-                respuesta
-            });
-            localStorage.setItem('codemak_pqrs', JSON.stringify(pqrsGuardadas));
+                medio_respuesta: respuesta
+            };
 
-            // Transición a la pantalla de éxito
-            formPqrBody.classList.add('hidden');
-            pqrStepSuccess.classList.remove('hidden');
-        });
-    }
-
-    // Copiar radicado al portapapeles
-    if (btnCopiarRadicado) {
-        btnCopiarRadicado.addEventListener('click', () => {
-            const numero = pqrRadicadoNumero ? pqrRadicadoNumero.textContent : '';
-            if (numero) {
-                navigator.clipboard.writeText(numero).then(() => {
-                    // Feedback visual en el botón
-                    const originalIconHtml = btnCopiarRadicado.innerHTML;
-                    btnCopiarRadicado.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>`;
-                    btnCopiarRadicado.classList.add('bg-green-50', 'border-green-300');
-                    setTimeout(() => {
-                        btnCopiarRadicado.innerHTML = originalIconHtml;
-                        btnCopiarRadicado.classList.remove('bg-green-50', 'border-green-300');
-                    }, 2000);
+            try {
+                const response = await fetch('https://formspree.io/f/xeewyypd', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(formData)
                 });
+
+                if (response.ok) {
+                    // Mostrar radicado en pantalla de éxito
+                    if (pqrRadicadoNumero) pqrRadicadoNumero.textContent = radicado;
+
+                    // Guardar en localStorage
+                    const pqrsGuardadas = JSON.parse(localStorage.getItem('codemak_pqrs') || '[]');
+                    pqrsGuardadas.push({ radicado, fecha: `${dd}/${mm}/${yyyy}`, nombre, documento, vinculo, telefono, correo, tipo, descripcion, confidencial, respuesta });
+                    localStorage.setItem('codemak_pqrs', JSON.stringify(pqrsGuardadas));
+
+                    // Transición a pantalla de éxito
+                    formPqrBody.classList.add('hidden');
+                    pqrStepSuccess.classList.remove('hidden');
+                } else {
+                    // Error de Formspree
+                    const data = await response.json();
+                    throw new Error(data?.errors?.map(e => e.message).join(', ') || 'Error al enviar');
+                }
+            } catch (err) {
+                // Restaurar botón y mostrar error
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar PQR';
+                }
+                alert(`❌ No se pudo enviar la PQR: ${err.message}\n\nPor favor intente de nuevo o contáctenos directamente a coordinadorarhcodemak@gmail.com`);
             }
-        });
-    }
-
-    // Revelar "Cerrar Ventana" solo después de pulsar "Enviar por Correo Formal"
-    if (btnPqrMailto) {
-        btnPqrMailto.addEventListener('click', () => {
-            // Ocultar el aviso amarillo
-            const avisoCorreo = document.getElementById('pqr-aviso-correo');
-            if (avisoCorreo) avisoCorreo.classList.add('hidden');
-
-            // Mostrar botón de cerrar
-            if (btnCerrarPqrExito) {
-                btnCerrarPqrExito.classList.remove('hidden');
-            }
-
-            // Cambiar el texto y estilo del botón de correo para indicar que ya se hizo
-            btnPqrMailto.innerHTML = `
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Correo Preparado ✓
-            `;
-            btnPqrMailto.classList.remove('bg-primary', 'hover:bg-primary-dark');
-            btnPqrMailto.classList.add('bg-green-600', 'hover:bg-green-700');
         });
     }
 
