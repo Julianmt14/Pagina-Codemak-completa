@@ -398,27 +398,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Datos a enviar a Formspree
-            const formData = {
-                _subject: `PQR Radicada - ${radicado} [${nombre}]`,
-                _replyto: correo,
-                radicado,
-                fecha: `${dd}/${mm}/${yyyy}`,
-                nombre,
-                documento,
-                vinculo_empresa: vinculo,
-                telefono,
-                correo_solicitante: correo,
-                tipo_solicitud: tipo,
-                descripcion_hechos: descripcion,
-                confidencial,
-                medio_respuesta: respuesta
-            };
+            const formData = new FormData();
+            formData.append('_subject', `PQR Radicada - ${radicado} [${nombre}]`);
+            formData.append('_replyto', correo);
+            formData.append('radicado', radicado);
+            formData.append('fecha', `${dd}/${mm}/${yyyy}`);
+            formData.append('nombre', nombre);
+            formData.append('documento', documento);
+            formData.append('vinculo_empresa', vinculo);
+            formData.append('telefono', telefono);
+            formData.append('correo_solicitante', correo);
+            formData.append('tipo_solicitud', tipo);
+            formData.append('descripcion_hechos', descripcion);
+            formData.append('confidencial', confidencial);
+            formData.append('medio_respuesta', respuesta);
 
             try {
                 const response = await fetch('https://formspree.io/f/xeewyypd', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(formData)
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
                 });
 
                 if (response.ok) {
