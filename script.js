@@ -421,10 +421,11 @@ ${descripcion}
 Esta solicitud fue radicada de manera conforme por el sitio web oficial de CODEMAK.
 El solicitante ha autorizadode manera expresa el tratamiento de sus datos personales bajo la Ley 1581 de 2012 (Habeas Data).`;
 
-            // Configurar el mailto
-            const mailtoUrl = `mailto:coordinadorarhcodemak@gmail.com?subject=${encodeURIComponent(`Radicación de PQR - ${radicado} [${nombre}]`)}&body=${encodeURIComponent(emailBody)}`;
+            // Configurar el enlace para abrir Gmail directamente en el navegador
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&to=coordinadorarhcodemak%40gmail.com&su=${encodeURIComponent(`Radicación de PQR - ${radicado} [${nombre}]`)}&body=${encodeURIComponent(emailBody)}`;
             if (btnPqrMailto) {
-                btnPqrMailto.setAttribute('href', mailtoUrl);
+                btnPqrMailto.setAttribute('href', gmailUrl);
+                btnPqrMailto.setAttribute('target', '_blank');
             }
 
             // Guardar en localStorage para respaldo/auditoría del usuario
