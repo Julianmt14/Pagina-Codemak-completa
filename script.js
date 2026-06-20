@@ -469,4 +469,29 @@ El solicitante ha autorizadode manera expresa el tratamiento de sus datos person
         });
     }
 
+    // Revelar "Cerrar Ventana" solo después de pulsar "Enviar por Correo Formal"
+    if (btnPqrMailto) {
+        btnPqrMailto.addEventListener('click', () => {
+            // Ocultar el aviso amarillo
+            const avisoCorreo = document.getElementById('pqr-aviso-correo');
+            if (avisoCorreo) avisoCorreo.classList.add('hidden');
+
+            // Mostrar botón de cerrar
+            if (btnCerrarPqrExito) {
+                btnCerrarPqrExito.classList.remove('hidden');
+            }
+
+            // Cambiar el texto y estilo del botón de correo para indicar que ya se hizo
+            btnPqrMailto.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Correo Preparado ✓
+            `;
+            btnPqrMailto.classList.remove('bg-primary', 'hover:bg-primary-dark');
+            btnPqrMailto.classList.add('bg-green-600', 'hover:bg-green-700');
+        });
+    }
+
 });
+

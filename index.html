@@ -1137,16 +1137,27 @@
                         El departamento de Recursos Humanos a cargo de <strong>Yurlay Casañas Pérez</strong> atenderá su solicitud en los términos legales correspondientes.
                     </div>
 
-                    <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3 justify-center">
-                        <a id="btn-pqr-mailto" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-md transition-all duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M2.002 6a2 2 0 0 1 2-2h16.005a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4.002a2 2 0 0 1-2-2V6zm3.15 0l6.85 5.48L18.848 6H5.152z" />
+                    <div class="pt-6 border-t border-gray-100 flex flex-col gap-3 justify-center">
+                        <!-- Aviso obligatorio -->
+                        <div id="pqr-aviso-correo" class="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-left">
+                            <svg class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                             </svg>
-                            Enviar por Correo Formal
-                        </a>
-                        <button id="btn-cerrar-pqr-exito" type="button" class="px-6 py-3 bg-gray-150 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all duration-300">
-                            Cerrar Ventana
-                        </button>
+                            <p class="text-xs text-amber-700 leading-relaxed">
+                                <strong>Paso obligatorio:</strong> Para completar la radicación, debes enviar el correo formal a Recursos Humanos. Haz clic en el botón a continuación para abrir tu cliente de correo con la PQR pre-cargada.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a id="btn-pqr-mailto" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-md transition-all duration-300">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M2.002 6a2 2 0 0 1 2-2h16.005a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4.002a2 2 0 0 1-2-2V6zm3.15 0l6.85 5.48L18.848 6H5.152z" />
+                                </svg>
+                                Enviar por Correo Formal
+                            </a>
+                            <button id="btn-cerrar-pqr-exito" type="button" class="hidden px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all duration-300">
+                                Cerrar Ventana
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
