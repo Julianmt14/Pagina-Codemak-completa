@@ -804,6 +804,29 @@
                 </a>
             </div>
 
+            <!-- Canal de PQR -->
+            <div class="mt-16 max-w-4xl mx-auto bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-sm animate-on-scroll text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Canal de PQR (Peticiones, Quejas, Reclamos y Sugerencias)</h3>
+                <p class="text-gray-500 max-w-2xl mx-auto mb-8 text-sm md:text-base">
+                    Para radicar una solicitud formal ante nuestro departamento de Recursos Humanos, puedes completar el formulario en línea o descargar el formato oficial en Word.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button id="btn-abrir-pqr" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Radicar PQR en Línea
+                    </button>
+                    <a href="FORMATO DE PQR codemak.docx" download class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 hover:border-primary text-gray-700 hover:text-primary font-semibold px-6 py-3 rounded-xl hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Descargar Formato PQR (.docx)
+                    </a>
+                </div>
+            </div>
+
             <!-- Dirección -->
             <div class="mt-12 text-center animate-on-scroll">
                 <div
@@ -941,6 +964,191 @@
                     class="flex-1 md:flex-none bg-primary hover:bg-primary-dark text-white font-semibold py-2.5 px-6 rounded-lg transition-colors duration-300 whitespace-nowrap shadow-md">
                     Aceptar Cookies
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MODAL DE PQR ========== -->
+    <div id="modal-pqr" class="fixed inset-0 z-[150] hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl transform transition-all duration-300 scale-95 opacity-0 modal-content">
+            <!-- Cabecera del Modal -->
+            <div class="bg-gradient-to-r from-primary to-primary-dark p-6 text-white flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold">Radicación de PQR</h3>
+                    <p class="text-xs text-white/80">Peticiones, Quejas, Reclamos y Sugerencias</p>
+                </div>
+                <button id="btn-cerrar-modal-pqr" class="text-white hover:text-gray-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Contenido Dinámico -->
+            <div class="p-6 md:p-8 max-h-[75vh] overflow-y-auto">
+                <!-- PASO 1: Habeas Data -->
+                <div id="pqr-step-habeas" class="space-y-6">
+                    <div class="flex items-center gap-3 text-primary">
+                        <svg class="w-8 h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <h4 class="text-lg font-bold text-gray-900">Política de Tratamiento de Datos Personales</h4>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-250 rounded-2xl p-4 text-xs md:text-sm text-gray-650 leading-relaxed max-h-60 overflow-y-auto">
+                        <p class="mb-3">
+                            En cumplimiento de la <strong>Ley 1581 de 2012</strong> (Ley de Protección de Datos Personales o Habeas Data) en Colombia, le informamos que los datos personales suministrados en este formulario serán tratados por <strong>CODEMAK S.A.S.</strong> (NIT: 900.121.393-3) con la única finalidad de tramitar, gestionar, auditar y dar respuesta formal a su Petición, Queja, Reclamo o Sugerencia (PQR).
+                        </p>
+                        <p class="mb-3">
+                            Sus datos serán tratados de manera confidencial y segura conforme a nuestras políticas internas. El canal institucional de Recursos Humanos, liderado por <strong>Yurlay Casañas Pérez</strong> (coordinadorarhcodemak@gmail.com), será la dependencia encargada de dar respuesta y seguimiento a su caso.
+                        </p>
+                        <p>
+                            Al marcar la casilla de aceptación, usted autoriza de forma libre, previa, expresa e informada el tratamiento de sus datos personales para las finalidades anteriormente descritas.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3 mt-4">
+                        <input type="checkbox" id="check-habeas" class="w-5 h-5 rounded text-primary focus:ring-primary border-gray-300 mt-0.5 cursor-pointer">
+                        <label for="check-habeas" class="text-sm text-gray-700 cursor-pointer select-none">
+                            He leído y acepto la Política de Tratamiento de Datos Personales (Habeas Data) de CODEMAK S.A.S.
+                        </label>
+                    </div>
+                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                        <button id="btn-cancelar-habeas" class="px-5 py-2.5 text-gray-500 hover:text-gray-700 font-medium transition-colors">Cancelar</button>
+                        <button id="btn-continuar-formulario" disabled class="px-6 py-2.5 bg-gray-400 text-white font-semibold rounded-xl cursor-not-allowed transition-all duration-300">
+                            Continuar al Formulario
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PASO 2: Formulario PQR -->
+                <form id="form-pqr-body" class="space-y-6 hidden">
+                    <div class="border-b border-gray-150 pb-3">
+                        <h4 class="text-md font-bold text-gray-700 font-sans">1. DATOS DEL SOLICITANTE</h4>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Nombre Completo *</label>
+                            <input type="text" id="pqr-nombre" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Documento de Identidad *</label>
+                            <input type="text" id="pqr-documento" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700" placeholder="C.C., NIT o Pasaporte">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Cargo o Vínculo con la Empresa *</label>
+                            <input type="text" id="pqr-vinculo" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700" placeholder="Ej. Empleado, Proveedor, Cliente">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Teléfono de Contacto *</label>
+                            <input type="tel" id="pqr-telefono" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700" placeholder="Ej. 3001234567">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Correo Electrónico *</label>
+                            <input type="email" id="pqr-correo" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700" placeholder="correo@ejemplo.com">
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-150 pb-3 pt-2">
+                        <h4 class="text-md font-bold text-gray-700 font-sans">2. DETALLES DE LA SOLICITUD</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Tipo de Solicitud *</label>
+                            <select id="pqr-tipo" required class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700 bg-white">
+                                <option value="" disabled selected>Seleccione una opción...</option>
+                                <option value="Petición">Petición</option>
+                                <option value="Queja">Queja</option>
+                                <option value="Reclamo">Reclamo</option>
+                                <option value="Felicitación / Sugerencia">Felicitación / Sugerencia</option>
+                                <option value="Denuncia por trato inadecuado">Denuncia por trato inadecuado, conducta de empleados o ambiente laboral</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1">Descripción de los Hechos *</label>
+                            <textarea id="pqr-descripcion" required rows="4" class="w-full px-4 py-2.5 rounded-xl border border-gray-250 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-sm text-gray-700 resize-none" placeholder="Escriba aquí en detalle los hechos que fundamentan su solicitud..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-150 pb-3 pt-2">
+                        <h4 class="text-md font-bold text-gray-700 font-sans">3. CONFIDENCIALIDAD Y RESPUESTA</h4>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-2">¿Desea mantener su identidad confidencial? *</label>
+                            <div class="flex gap-4">
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-750 cursor-pointer">
+                                    <input type="radio" name="pqr-confidencial" value="Sí" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 cursor-pointer"> Sí
+                                </label>
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-750 cursor-pointer">
+                                    <input type="radio" name="pqr-confidencial" value="No" checked class="w-4 h-4 text-primary focus:ring-primary border-gray-300 cursor-pointer"> No
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-2">Medio de respuesta formal deseado *</label>
+                            <div class="space-y-1.5 flex flex-col">
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-750 cursor-pointer">
+                                    <input type="radio" name="pqr-respuesta" value="Sí, por correo electrónico" checked class="w-4 h-4 text-primary focus:ring-primary border-gray-300 cursor-pointer"> Correo electrónico
+                                </label>
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-750 cursor-pointer">
+                                    <input type="radio" name="pqr-respuesta" value="Sí, por teléfono" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 cursor-pointer"> Teléfono
+                                </label>
+                                <label class="inline-flex items-center gap-2 text-sm text-gray-750 cursor-pointer">
+                                    <input type="radio" name="pqr-respuesta" value="No necesito respuesta" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 cursor-pointer"> No necesito respuesta
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-6 border-t border-gray-100">
+                        <button type="button" id="btn-volver-habeas" class="px-5 py-2.5 text-gray-500 hover:text-gray-700 font-medium transition-colors">Volver</button>
+                        <button type="submit" class="px-6 py-2.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all duration-300 shadow-md">
+                            Enviar PQR
+                        </button>
+                    </div>
+                </form>
+
+                <!-- PASO 3: Éxito -->
+                <div id="pqr-step-success" class="hidden text-center space-y-6 py-4 animate-fade-up">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-500 shadow-inner">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-2xl font-bold text-gray-900">¡PQR Radicada con Éxito!</h4>
+                        <p class="text-sm text-gray-500 max-w-md mx-auto">
+                            Su solicitud formal ha sido registrada. Guarde el siguiente número de radicado para realizar el seguimiento.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 border border-gray-250 rounded-2xl p-5 max-w-sm mx-auto flex items-center justify-between gap-3 shadow-inner">
+                        <div class="text-left">
+                            <span class="text-[10px] font-extrabold tracking-widest text-primary uppercase">Radicado de PQR</span>
+                            <div id="pqr-radicado-numero" class="text-xl font-black text-gray-800 tracking-wider">CDK-PQR-2026-XXXX</div>
+                        </div>
+                        <button id="btn-copiar-radicado" type="button" class="p-2.5 bg-white border border-gray-200 hover:bg-gray-100 rounded-xl text-gray-600 transition-all shadow-sm" title="Copiar radicado">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="text-xs text-gray-500 max-w-md mx-auto leading-relaxed">
+                        El departamento de Recursos Humanos a cargo de <strong>Yurlay Casañas Pérez</strong> atenderá su solicitud en los términos legales correspondientes.
+                    </div>
+
+                    <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3 justify-center">
+                        <a id="btn-pqr-mailto" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-md transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M2.002 6a2 2 0 0 1 2-2h16.005a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4.002a2 2 0 0 1-2-2V6zm3.15 0l6.85 5.48L18.848 6H5.152z" />
+                            </svg>
+                            Enviar por Correo Formal
+                        </a>
+                        <button id="btn-cerrar-pqr-exito" type="button" class="px-6 py-3 bg-gray-150 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl transition-all duration-300">
+                            Cerrar Ventana
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

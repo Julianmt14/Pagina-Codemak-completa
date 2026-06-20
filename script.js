@@ -277,4 +277,196 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ===== MODAL DE PQR (PETICIONES, QUEJAS, RECLAMOS Y SUGERENCIAS) =====
+    const modalPqr = document.getElementById('modal-pqr');
+    const modalContent = modalPqr ? modalPqr.querySelector('.modal-content') : null;
+    const btnAbrirPqr = document.getElementById('btn-abrir-pqr');
+    const btnCerrarModalPqr = document.getElementById('btn-cerrar-modal-pqr');
+    const btnCancelarHabeas = document.getElementById('btn-cancelar-habeas');
+    const btnVolverHabeas = document.getElementById('btn-volver-habeas');
+    const btnContinuarFormulario = document.getElementById('btn-continuar-formulario');
+    const checkHabeas = document.getElementById('check-habeas');
+    const pqrStepHabeas = document.getElementById('pqr-step-habeas');
+    const formPqrBody = document.getElementById('form-pqr-body');
+    const pqrStepSuccess = document.getElementById('pqr-step-success');
+    const pqrRadicadoNumero = document.getElementById('pqr-radicado-numero');
+    const btnCopiarRadicado = document.getElementById('btn-copiar-radicado');
+    const btnPqrMailto = document.getElementById('btn-pqr-mailto');
+    const btnCerrarPqrExito = document.getElementById('btn-cerrar-pqr-exito');
+
+    function abrirPqrModal() {
+        if (!modalPqr) return;
+        
+        // Reset de pasos
+        pqrStepHabeas.classList.remove('hidden');
+        formPqrBody.classList.add('hidden');
+        pqrStepSuccess.classList.add('hidden');
+        
+        // Reset Habeas Data
+        checkHabeas.checked = false;
+        btnContinuarFormulario.disabled = true;
+        btnContinuarFormulario.classList.remove('bg-primary', 'hover:bg-primary-dark', 'cursor-pointer');
+        btnContinuarFormulario.classList.add('bg-gray-400', 'cursor-not-allowed');
+        
+        // Reset campos formulario
+        formPqrBody.reset();
+        
+        // Mostrar modal
+        modalPqr.classList.remove('hidden');
+        setTimeout(() => {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function cerrarPqrModal() {
+        if (!modalPqr) return;
+        modalContent.classList.remove('scale-100', 'opacity-100');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modalPqr.classList.add('hidden');
+        }, 300);
+    }
+
+    if (btnAbrirPqr) btnAbrirPqr.addEventListener('click', abrirPqrModal);
+    if (btnCerrarModalPqr) btnCerrarModalPqr.addEventListener('click', cerrarPqrModal);
+    if (btnCancelarHabeas) btnCancelarHabeas.addEventListener('click', cerrarPqrModal);
+    if (btnCerrarPqrExito) btnCerrarPqrExito.addEventListener('click', cerrarPqrModal);
+
+    // Habilitar / Deshabilitar boton continuar en Habeas Data
+    if (checkHabeas) {
+        checkHabeas.addEventListener('change', () => {
+            if (checkHabeas.checked) {
+                btnContinuarFormulario.disabled = false;
+                btnContinuarFormulario.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                btnContinuarFormulario.classList.add('bg-primary', 'hover:bg-primary-dark', 'cursor-pointer');
+            } else {
+                btnContinuarFormulario.disabled = true;
+                btnContinuarFormulario.classList.remove('bg-primary', 'hover:bg-primary-dark', 'cursor-pointer');
+                btnContinuarFormulario.classList.add('bg-gray-400', 'cursor-not-allowed');
+            }
+        });
+    }
+
+    // Ir de Habeas Data a Formulario
+    if (btnContinuarFormulario) {
+        btnContinuarFormulario.addEventListener('click', () => {
+            pqrStepHabeas.classList.add('hidden');
+            formPqrBody.classList.remove('hidden');
+        });
+    }
+
+    // Volver de Formulario a Habeas Data
+    if (btnVolverHabeas) {
+        btnVolverHabeas.addEventListener('click', () => {
+            formPqrBody.classList.add('hidden');
+            pqrStepHabeas.classList.remove('hidden');
+        });
+    }
+
+    // Envío del Formulario PQR
+    if (formPqrBody) {
+        formPqrBody.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Generar radicado
+            const hoy = new Date();
+            const yyyy = hoy.getFullYear();
+            const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            const dd = String(hoy.getDate()).padStart(2, '0');
+            const random = Math.floor(1000 + Math.random() * 9000);
+            const radicado = `CDK-PQR-${yyyy}${mm}${dd}-${random}`;
+
+            // Obtener valores del formulario
+            const nombre = document.getElementById('pqr-nombre').value;
+            const documento = document.getElementById('pqr-documento').value;
+            const vinculo = document.getElementById('pqr-vinculo').value;
+            const telefono = document.getElementById('pqr-telefono').value;
+            const correo = document.getElementById('pqr-correo').value;
+            const tipo = document.getElementById('pqr-tipo').value;
+            const descripcion = document.getElementById('pqr-descripcion').value;
+            const confidencial = document.querySelector('input[name="pqr-confidencial"]:checked').value;
+            const respuesta = document.querySelector('input[name="pqr-respuesta"]:checked').value;
+
+            // Mostrar radicado en el modal
+            if (pqrRadicadoNumero) {
+                pqrRadicadoNumero.textContent = radicado;
+            }
+
+            // Crear el cuerpo del correo en texto plano pre-formateado
+            const emailBody = `RADICACIÓN FORMAL DE PQR - CODEMAK S.A.S.
+--------------------------------------------------
+Radicado No: ${radicado}
+Fecha de Envío: ${dd}/${mm}/${yyyy}
+
+1. DATOS DEL SOLICITANTE:
+- Nombre: ${nombre}
+- Documento de identidad: ${documento}
+- Cargo o vínculo con la empresa: ${vinculo}
+- Teléfono de contacto: ${telefono}
+- Correo electrónico: ${correo}
+
+2. DETALLES DE LA SOLICITUD:
+- Tipo de solicitud: ${tipo}
+- Descripción de los hechos:
+${descripcion}
+
+3. CONFIDENCIALIDAD Y RESPUESTA:
+- Mantener identidad confidencial ante terceros: ${confidencial}
+- Medio de respuesta formal deseado: ${respuesta}
+
+--------------------------------------------------
+Esta solicitud fue radicada de manera conforme por el sitio web oficial de CODEMAK.
+El solicitante ha autorizadode manera expresa el tratamiento de sus datos personales bajo la Ley 1581 de 2012 (Habeas Data).`;
+
+            // Configurar el mailto
+            const mailtoUrl = `mailto:coordinadorarhcodemak@gmail.com?subject=${encodeURIComponent(`Radicación de PQR - ${radicado} [${nombre}]`)}&body=${encodeURIComponent(emailBody)}`;
+            if (btnPqrMailto) {
+                btnPqrMailto.setAttribute('href', mailtoUrl);
+            }
+
+            // Guardar en localStorage para respaldo/auditoría del usuario
+            const pqrsGuardadas = JSON.parse(localStorage.getItem('codemak_pqrs') || '[]');
+            pqrsGuardadas.push({
+                radicado,
+                fecha: `${dd}/${mm}/${yyyy}`,
+                nombre,
+                documento,
+                vinculo,
+                telefono,
+                correo,
+                tipo,
+                descripcion,
+                confidencial,
+                respuesta
+            });
+            localStorage.setItem('codemak_pqrs', JSON.stringify(pqrsGuardadas));
+
+            // Transición a la pantalla de éxito
+            formPqrBody.classList.add('hidden');
+            pqrStepSuccess.classList.remove('hidden');
+        });
+    }
+
+    // Copiar radicado al portapapeles
+    if (btnCopiarRadicado) {
+        btnCopiarRadicado.addEventListener('click', () => {
+            const numero = pqrRadicadoNumero ? pqrRadicadoNumero.textContent : '';
+            if (numero) {
+                navigator.clipboard.writeText(numero).then(() => {
+                    // Feedback visual en el botón
+                    const originalIconHtml = btnCopiarRadicado.innerHTML;
+                    btnCopiarRadicado.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>`;
+                    btnCopiarRadicado.classList.add('bg-green-50', 'border-green-300');
+                    setTimeout(() => {
+                        btnCopiarRadicado.innerHTML = originalIconHtml;
+                        btnCopiarRadicado.classList.remove('bg-green-50', 'border-green-300');
+                    }, 2000);
+                });
+            }
+        });
+    }
+
 });
