@@ -113,6 +113,7 @@
                     <a href="#proyectos" class="nav-link">Proyectos</a>
                     <a href="vacantes.html" class="nav-link">Vacantes</a>
                     <a href="#contacto" class="nav-link">Contacto</a>
+                    <a href="#pqr" class="nav-link">PQR</a>
                 </div>
 
                 <!-- Botón de Llamada a la Acción -->
@@ -143,6 +144,7 @@
                 <a href="#proyectos" class="mobile-nav-link">Proyectos</a>
                 <a href="vacantes.html" class="mobile-nav-link">Vacantes</a>
                 <a href="#contacto" class="mobile-nav-link">Contacto</a>
+                <a href="#pqr" class="mobile-nav-link">PQR</a>
                 <a href="#contacto"
                     class="block mt-4 text-center bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300">
                     Cotizar Ahora
@@ -804,12 +806,42 @@
                 </a>
             </div>
 
-            <!-- Canal de PQR -->
-            <div class="mt-16 max-w-4xl mx-auto bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-sm animate-on-scroll text-center relative overflow-hidden">
+            <!-- Dirección -->
+            <div class="mt-12 text-center animate-on-scroll">
+                <div
+                    class="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-8 py-4 shadow-sm">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="text-gray-600 text-sm">Dirección: Carrera 36 #16B-07 Sur, Vía corredor ecológico,
+                        Villavicencio, Meta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PQR ========== -->
+    <section id="pqr" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Encabezado de la Sección -->
+            <div class="text-center mb-12 animate-on-scroll">
+                <span class="text-primary font-semibold text-sm uppercase tracking-widest">Recursos Humanos</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-5 text-gray-900">Canal de <span
+                        class="text-primary">PQR</span></h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Peticiones, Quejas, Reclamos y Sugerencias. Este canal es
+                    exclusivo para radicar solicitudes formales ante nuestro departamento de Recursos Humanos.</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-primary-light mx-auto rounded-full mt-5"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gray-50 border border-gray-200 rounded-3xl p-8 md:p-10 shadow-sm animate-on-scroll text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Canal de PQR (Peticiones, Quejas, Reclamos y Sugerencias)</h3>
                 <p class="text-gray-500 max-w-2xl mx-auto mb-8 text-sm md:text-base">
-                    Para radicar una solicitud formal ante nuestro departamento de Recursos Humanos, puedes completar el formulario en línea o descargar el formato oficial en Word.
+                    Puedes completar el formulario en línea o descargar el formato oficial en Word y enviarlo directamente a Recursos Humanos.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <button id="btn-abrir-pqr" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
@@ -824,22 +856,6 @@
                         </svg>
                         Descargar Formato PQR (.docx)
                     </a>
-                </div>
-            </div>
-
-            <!-- Dirección -->
-            <div class="mt-12 text-center animate-on-scroll">
-                <div
-                    class="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-2xl px-8 py-4 shadow-sm">
-                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span class="text-gray-600 text-sm">Dirección: Carrera 36 #16B-07 Sur, Vía corredor ecológico,
-                        Villavicencio, Meta</span>
                 </div>
             </div>
         </div>
@@ -872,6 +888,8 @@
 
                         <li><a href="#contacto"
                                 class="text-gray-600 hover:text-primary transition-colors text-sm">Contacto</a></li>
+                        <li><a href="#pqr"
+                                class="text-gray-600 hover:text-primary transition-colors text-sm">PQR</a></li>
                         <li><a href="legales.html"
                                 class="text-gray-600 hover:text-primary transition-colors text-sm">Avisos Legales</a>
                         </li>
