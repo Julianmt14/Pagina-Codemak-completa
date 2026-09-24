@@ -279,6 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Borrar PQR que versiones anteriores del sitio guardaban en el navegador (contenían datos personales)
+    try { localStorage.removeItem('codemak_pqrs'); } catch (e) { }
+
     // ===== MODAL DE PQR (PETICIONES, QUEJAS, RECLAMOS Y SUGERENCIAS) =====
     const modalPqr = document.getElementById('modal-pqr');
     const modalContent = modalPqr ? modalPqr.querySelector('.modal-content') : null;
@@ -423,11 +426,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     // Mostrar radicado en pantalla de éxito
                     if (pqrRadicadoNumero) pqrRadicadoNumero.textContent = radicado;
-
-                    // Guardar en localStorage
-                    const pqrsGuardadas = JSON.parse(localStorage.getItem('codemak_pqrs') || '[]');
-                    pqrsGuardadas.push({ radicado, fecha: `${dd}/${mm}/${yyyy}`, nombre, documento, vinculo, telefono, correo, tipo, descripcion, confidencial, respuesta });
-                    localStorage.setItem('codemak_pqrs', JSON.stringify(pqrsGuardadas));
 
                     // Transición a pantalla de éxito
                     formPqrBody.classList.add('hidden');
